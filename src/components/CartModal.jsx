@@ -57,6 +57,8 @@ const CartModal = (props) => {
                 <button className="btn btn-primary" onClick={checkout}>
                   Purchase Items!
                 </button>
+                <p>I know you really want to buy our coffee but,</p>
+                <p>our checkout may be down due to server being offline.</p>
               </>
             ) : (
               <h1>There are no items in your cart!</h1>
