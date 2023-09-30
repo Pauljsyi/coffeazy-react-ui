@@ -8,8 +8,6 @@ const NavItem = (props) => {
   const { coffeeCount, cart, showCart, handleOpen, handleClose, toggleOpen } =
     props;
 
-  console.log(showCart);
-
   return (
     <>
       <Link className="nav-link" to="/">

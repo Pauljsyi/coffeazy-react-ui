@@ -21,17 +21,14 @@ const Login = () => {
     axios
       .post(`http://localhost:8000/api/users/login`, formData)
       .then((req, res) => {
-        console.log("req", req);
         if (req.data.code === "PASSWORD_ERR") {
           return setPasswordErr(req.data);
         }
         setFormData(formData);
 
         navigate("/");
-        // console.log("res", res);
       })
       .catch((err) => {
-        console.log("error", err.response.data);
         setError(err.response.data);
       });
   };
@@ -42,7 +39,6 @@ const Login = () => {
     axios
       .get(`http://localhost:8000/api/users`)
       .then((res) => {
-        console.log("response object", Array.isArray(res.data.users));
         setUsers(res.data.users);
       })
       .catch((e) => console.error("you did something wrong", e));

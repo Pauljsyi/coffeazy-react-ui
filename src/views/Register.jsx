@@ -21,18 +21,12 @@ const Register = () => {
     axios
       .post("http://localhost:8000/api/users/register", formData)
       .then((req, res) => {
-        console.log("user created");
-        // console.log(formData);
         setFormData(formData);
         navigate("/");
       })
       .catch((err) => {
-        console.log("create error");
         const validateErr = err.response.data.validation_error.errors;
         const duplicateErr = err.response.data.validation_error.code;
-        console.log({ err });
-        console.log({ validateErr });
-        console.log({ duplicateErr });
         if (validateErr) {
           return setError(validateErr);
         } else if (duplicateErr === 11000) {
@@ -44,8 +38,6 @@ const Register = () => {
             },
           });
         }
-        // console.log(err.response.data.validation_error);
-        // console.log(err.response.data.validation_error.errors);
         // setError(err.response.data.validation_error.errors);
       });
     setFormData(initialValue);
@@ -55,7 +47,6 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // console.log(formData);
   return (
     <div>
       <h1>Register</h1>

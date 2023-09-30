@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-const url2 = "https://coffee-express-api.onrender.com/coffee";
+// const url2 = "https://coffee-express-api.onrender.com/coffee";
+const url2 = "http://localhost:8000/coffee";
 // import { productsArray, getProductData } from "./productsStore";
 // import getCoffeeData from "../helpers/GetCoffeeData";
 
@@ -25,7 +26,6 @@ export function CartProvider({ children }) {
     const res = await axios
       .get(url2)
       .then((res) => {
-        // console.log("response from axios", res.data);
         setCoffee(res.data);
       })
       .catch((e) => {
@@ -37,12 +37,9 @@ export function CartProvider({ children }) {
   }, []);
 
   function getCoffeeData(id) {
-    console.log("id in getcoffee data", id.quantity);
     let coffeeData = coffee.find((coffee) => coffee.id === id);
-    // console.log(coffeeData);
 
     if (coffeeData == undefined) {
-      console.log("coffee data does not exist for ID: " + id);
       return undefined;
     }
 
@@ -63,7 +60,6 @@ export function CartProvider({ children }) {
 
   function addOneToCart(id) {
     const quantity = getProductQuantity(id);
-    console.log("this is running");
 
     if (quantity === 0) {
       //product is not in cart

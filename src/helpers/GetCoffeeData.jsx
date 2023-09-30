@@ -8,7 +8,6 @@ const coffeeData = () => {
     const res = await axios
       .get(url2)
       .then((res) => {
-        console.log("response from axios", res.data);
         setCoffee(res.data);
       })
       .catch((e) => {
@@ -18,17 +17,13 @@ const coffeeData = () => {
   useEffect(() => {
     getCoffee();
   }, []);
-  console.log("coffee", { coffee });
   return coffee;
 };
-
-// console.log("GET COFFEE DATA", coffee);
 
 function getCoffeeData(id) {
   let coffeeData = coffeesArray.find((coffee) => coffee.id === id);
 
   if (coffeeData == undefined) {
-    console.log("coffee data does not exist for ID: " + id);
     return undefined;
   }
 

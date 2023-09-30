@@ -10,10 +10,7 @@ const ProductCard = (props) => {
   const { coffee, idx } = props;
   const [open, setOpen] = useState(false);
 
-  // console.log(cart.items);
-
   const productQuantity = cart.getProductQuantity(coffee.id);
-  // console.log("cart items", cart.items);
 
   return (
     <>
@@ -34,7 +31,6 @@ const ProductCard = (props) => {
             height={250}
             onClick={() => {
               setOpen(!open);
-              // console.log("you didnt click the actual button");
             }}
           />
 
@@ -83,7 +79,6 @@ const ProductCard = (props) => {
                     variant="primary"
                     onClick={() => {
                       cart.addOneToCart(coffee.id);
-                      // console.log("coffee id", coffee.id);
                     }}
                   >
                     Add to Cart

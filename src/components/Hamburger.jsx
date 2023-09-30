@@ -7,8 +7,6 @@ const Hamburger = () => {
   const getWindowSize = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    console.log("width: ", width);
-    console.log("height: ", height);
   };
   return (
     <>

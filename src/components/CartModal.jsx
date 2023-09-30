@@ -3,43 +3,30 @@ import ReactDom from "react-dom";
 import { Modal, Button } from "react-bootstrap";
 import CartProduct from "./CartProduct";
 
-// const CartModal = (props) => {
-//   const { showCart, handleClose, coffeeCount, cart } = props;
-//   console.log(cart.getCoffeeData);
-//   return (
-//     <div>
-//       <div closeButton>
-//         <Modal.Title>Shopping Cart</Modal.Title>
-//       </div>
-//       <Modal.Body>
-//         {coffeeCount > 0 ? (
-//           <>
-//             <p>Items in your cart:</p>
-//             {cart.items.map((currItem, idx) => (
-//               <CartProduct
-//                 key={idx}
-//                 id={currItem.id}
-//                 quantity={currItem.quantity}
-//               ></CartProduct>
-//             ))}
-//             <h1>Total: {cart.getTotalCost()}</h1>
-//             <Button>Purchase Items!</Button>
-//           </>
-//         ) : (
-//           <h1>There are no items in your cart!</h1>
-//         )}
-//       </Modal.Body>
-//     </div>
-//   );
-// };
-
 const CartModal = (props) => {
   const { showCart, handleOpen, handleClose, coffeeCount, cart } = props;
+
+  const checkout = async () => {
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: cart.items }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response.url) {
+          window.location.assign(response.url);
+        }
+      });
+  };
+
   if (!open) {
     return null;
   }
-
-  console.log("cart in MODALLLL", cart.getTotalCost());
 
   return ReactDom.createPortal(
     <>
@@ -47,7 +34,6 @@ const CartModal = (props) => {
         id="overlay"
         onClick={() => {
           handleClose();
-          console.log("you clicked me");
           document.body.style.overflow = "unset";
         }}
       />
@@ -68,7 +54,9 @@ const CartModal = (props) => {
                   ></CartProduct>
                 ))}
                 <h1>Total: ${cart.getTotalCost().toFixed(2)}</h1>
-                <button className="btn btn-primary">Purchase Items!</button>
+                <button className="btn btn-primary" onClick={checkout}>
+                  Purchase Items!
+                </button>
               </>
             ) : (
               <h1>There are no items in your cart!</h1>

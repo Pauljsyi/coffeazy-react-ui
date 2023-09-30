@@ -6,14 +6,11 @@ import { useContext } from "react";
 // import { getProductData } from "../productsStore";
 
 const CartProduct = (props) => {
-  console.log("props in Cartproduct", props);
   const cart = useContext(CartContext);
   const id = props.id;
 
-  console.log("id in Cart product", id);
   const quantity = props.quantity;
   const productData = cart.getCoffeeData(id);
-  console.log(productData);
 
   return (
     <>
