@@ -23,6 +23,10 @@ const stripePromise = loadStripe(
   "pk_test_51M8pJEJgWPjDbO5ajjTUurLefpF4RadjTlOsCpmT4Yaw2SHJlaCK0PhuUOuFwFtvHQaYG7v23X8uj6G8pb3VBAj600UE3G7yPU"
 );
 
+import coffee_data from "./data/coffee.json";
+
+console.log("APPJS", coffee_data);
+
 import CartProvider from "./context/CartContext";
 
 function App() {

@@ -4,20 +4,23 @@ import { Row, Col } from "react-bootstrap";
 import ProductCard from "../components/ProductCard";
 const url = "https://api.sampleapis.com/coffee/hot";
 const url2 = "https://coffee-express-api.onrender.com/coffee";
-const text_url = "http://localhost:8000/coffee";
+// const text_url = "http://localhost:8000/coffee";
+import coffee_data from "../data/coffee.json";
 
 const CardGrid = () => {
   const [coffee, setCoffee] = useState([]);
-  const getCoffee = async () => {
-    const res = await axios
-      .get(text_url)
-      .then((res) => {
-        setCoffee(res.data);
-      })
-      .catch((e) => {
-        console.error("something went wrong ", e);
-      });
-  };
+  useEffect(() => setCoffee(coffee_data));
+  console.log(coffee);
+  // const getCoffee = async () => {
+  //   const res = await axios
+  //     .get(url2)
+  //     .then((res) => {
+  //       setCoffee(res.data);
+  //     })
+  //     .catch((e) => {
+  //       console.error("something went wrong ", e);
+  //     });
+  // };
 
   //   const getCoffee = async () => {
   //   const res = await axios
@@ -31,9 +34,9 @@ const CardGrid = () => {
   //     });
   // };
 
-  useEffect(() => {
-    getCoffee();
-  }, []);
+  // useEffect(() => {
+  //   getCoffee();
+  // }, []);
   return (
     <>
       <Col className=" g-4 d-flex flex-wrap">

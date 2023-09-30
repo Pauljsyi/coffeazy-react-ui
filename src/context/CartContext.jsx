@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 // const url2 = "https://coffee-express-api.onrender.com/coffee";
-const url2 = "http://localhost:8000/coffee";
+const url2 = "https://coffee-express-api.onrender.com/coffee";
+
+import coffee_data from "../data/coffee.json";
 // import { productsArray, getProductData } from "./productsStore";
 // import getCoffeeData from "../helpers/GetCoffeeData";
 
@@ -23,14 +25,15 @@ export function CartProvider({ children }) {
   // ex. cart object
   // [{ id: 1, quantity: 2 }]
   const getCoffee = async () => {
-    const res = await axios
-      .get(url2)
-      .then((res) => {
-        setCoffee(res.data);
-      })
-      .catch((e) => {
-        console.error("something went wrong ", e);
-      });
+    // const res = await axios
+    //   .get(url2)
+    //   .then((res) => {
+    //     setCoffee(res.data);
+    //   })
+    //   .catch((e) => {
+    //     console.error("something went wrong ", e);
+    //   });
+    setCoffee(coffee_data);
   };
   useEffect(() => {
     getCoffee();

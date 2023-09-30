@@ -20,7 +20,7 @@ const UploadProduct = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/products/upload", formData)
+      .post("https://coffee-express-api.onrender.com/coffee", formData)
       .then((req, res) => {
         console.log("product uploaded");
         setFormData(formData);
